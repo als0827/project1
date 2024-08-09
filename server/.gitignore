@@ -1,0 +1,11 @@
+# 깃이 무시할 목록 : 폴더, 파일리스트
+/node_modules
+*.java
+*.db
+.DS_STORE
+.txt
+.c
+.py
+.env
+.env.local
+.env.local.develpment
