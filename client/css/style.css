@@ -1,0 +1,21 @@
+@charset "utf-8";
+
+table,
+th,
+td {
+    border-collapse: collapse;
+    border: 1px solid #333;
+}
+th,
+td {
+    padding: 10px 20px;
+    text-align: center;
+    vertical-align: middle;
+}
+th {
+    text-transform: capitalize;
+    width: calc(100% / 6);
+}
+button {
+    margin: 1rem
+}
