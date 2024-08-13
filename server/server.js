@@ -4,17 +4,13 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url));   // 👈 추가
 const __filename = fileURLToPath(import.meta.url);   // 👈 추가
 
 import express from "express";
-import dotenv from "dotenv";
-dotenv.config();
 import cors from "cors";
-
 
 // console.log(process.env.DB_HOST, process.env.DB_USER, process.env.DB_PWD);
 
 //const mariadb = require('mariadb');//커몬방식 요새 잘 안쓴다
 
 const app = express()
-const port = process.env.PORT || 4000; // 개발중
 
 app.use(express.json()); // json 포맷 인식
 app.use(cors()); // CORS policy
@@ -51,7 +47,7 @@ app.get('/getAllUsers', function (req, res) {
 
 // es6 : import(가져오기), export(내보내기)
 // CommonJS : require(가져오기), module.exports 또는 exports (내보내기)
-
+const port = 3000;
 const setting = {
   app,
   port
