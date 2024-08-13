@@ -1,0 +1,11 @@
+{
+  "name": "back_end_development",
+  "version": "1.0.0",
+  "description": "back-end service development",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "als0827",
+  "license": "MIT"
+}
