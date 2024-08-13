@@ -2,7 +2,7 @@ import userModel from "../models/userModel.js"
 
 const getAllusers = async (req, res) => {
     try {
-        const users = await userModel.getAllusers(); // 사용자 정보를 모두 조회해서 users 변수에 담아
+        const users = await userModel.getAllUsers(); // 사용자 정보를 모두 조회해서 users 변수에 담아
         res.status(200).json(users);
     } catch (err) {
         console.log(err);
