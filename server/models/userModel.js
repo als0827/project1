@@ -1,6 +1,7 @@
 import mariadb from "mariadb";
 import dotenv from "dotenv";
 dotenv.config();
+import bcrypt from "bcrypt"
 
 //db connection // MariaDB 연결 드라이버를 통해 서버의 DBMS 데이터 접근
 const pool = mariadb.createPool({
@@ -42,17 +43,19 @@ const getOneUser = async (userId) => {
     }
 }
 
-const addOneUser = async (userId, usderName, userEmail) => {
+const addUser = async (id, pwd, name, nick, email, hint) => {
     let conn; // 연결설정 변수(연결POOL)
+    const saltRounds = 10;
+    const hashedPwd = await bcrypt.hash(pwd, saltRounds); // 해싱된 비밀번호 생성
     try {
         conn = await pool.getConnection();
-        const rows = await conn.query("INSERT INTO users (id, name, email) VALUES (?,?,?)", [userId, usderName, userEmail]);
+        const rows = await conn.query("INSERT INTO users (id, pwd, name, nickname, email, pwd_hint) VALUES (?,?,?,?,?,?)", [id, hashedPwd, name, nick, email, hint]);
         return rows;
     } catch(err) {
         console.log(err);
         return conn.end();
     } finally {
-        if(conn) conn.end();
+        if(conn) conn.end(); // 또는 release() : 연결 해제 vs end() : 연결(POOL)중단 // pool 자체 종료 --> 시간, 네트워크 --> 개발비용 증가
 
     }
 }
@@ -60,7 +63,7 @@ const addOneUser = async (userId, usderName, userEmail) => {
 const userModel = {
     getAllUsers,
     getOneUser,
-    addOneUser
+    addUser
 }
 
 export default userModel;
